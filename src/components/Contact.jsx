@@ -15,7 +15,7 @@ const Contact = () => {
               rel="noreferrer"
               target="_blank"
               className="cta-btn cta-btn--resume"
-              href="mailto:example@email.com"
+              href="mailto:shubhamamn0709@email.com"
             >
               Call to Action
             </a>

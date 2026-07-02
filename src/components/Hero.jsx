@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="container">
         <Fade direction="left" duration={1000} delay={500} triggerOnce>
           <h1 className="hero-title">
-            Hi, my name is <span className="text-color-main">Your Name</span>
+            Hi, my name is <span className="text-color-main">Shubham Kumar</span>
             <br />
             I'm the Unknown Developer.
           </h1>

@@ -37,7 +37,7 @@ const About = () => {
                     rel="noreferrer"
                     target="_blank"
                     className="cta-btn cta-btn--resume"
-                    href="/assets/resume.pdf"
+                    href="/assets/Resume_1.pdf"
                   >
                     View Resume
                   </a>

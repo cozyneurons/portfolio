@@ -7,9 +7,13 @@ html {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: $font-family-sans;
+  background-color: $bg-color;
+  color: $text-primary;
   text-align: center;
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 
 /* Scrollbar */
@@ -18,10 +22,11 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: $bg-color;
 }
 ::-webkit-scrollbar-thumb {
-  background: $light-grey;
+  background: $surface-color;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: $primary-color;
