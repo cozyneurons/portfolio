@@ -65,3 +65,4 @@ This will generate optimized files in the `dist` folder, ready for deployment.
 ## Customization
 
 To customize this portfolio for your own use, check the `TODO.md` file for a comprehensive checklist of files and sections to update with your personal information, projects, and assets.
+Bye
