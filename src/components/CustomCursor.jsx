@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  // Use motion values for smoother performance
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  // Spring configuration for that organic, fluid feel
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
     // Check if it's a touch device
@@ -12,7 +20,8 @@ const CustomCursor = () => {
     setIsVisible(true);
 
     const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX - 10);
+      cursorY.set(e.clientY - 10);
     };
 
     const handleMouseOver = (e) => {
@@ -20,7 +29,8 @@ const CustomCursor = () => {
         e.target.tagName.toLowerCase() === 'a' ||
         e.target.tagName.toLowerCase() === 'button' ||
         e.target.closest('a') ||
-        e.target.closest('button')
+        e.target.closest('button') ||
+        e.target.closest('.magnetic')
       ) {
         setIsHovering(true);
       } else {
@@ -35,23 +45,23 @@ const CustomCursor = () => {
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, []);
+  }, [cursorX, cursorY]);
 
   if (!isVisible) return null;
 
   return (
     <motion.div
       className="custom-cursor"
+      style={{
+        x: cursorXSpring,
+        y: cursorYSpring,
+      }}
       animate={{
-        x: mousePosition.x - 10,
-        y: mousePosition.y - 10,
-        scale: isHovering ? 2 : 1,
-        opacity: isHovering ? 0.5 : 1,
+        scale: isHovering ? 2.5 : 1,
+        opacity: isHovering ? 0.8 : 1,
       }}
       transition={{
-        type: 'tween',
-        ease: 'backOut',
-        duration: 0.15,
+        scale: { type: 'spring', stiffness: 300, damping: 20 },
       }}
     />
   );

@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -11,13 +11,63 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 }
-  }
+const ProjectCard = ({ title, description }) => {
+  const ref = useRef(null);
+  
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    
+    const width = rect.width;
+    const height = rect.height;
+    
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.a
+      href="#!"
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="project-item magnetic"
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+      }}
+    >
+      <motion.div style={{ transform: "translateZ(30px)" }}>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </motion.div>
+    </motion.a>
+  );
 };
 
 const Projects = () => {
@@ -38,18 +88,18 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          <motion.a href="#!" className="project-item" variants={itemVariants}>
-            <h3>Project One</h3>
-            <p>A minimalist web application built with React and Vite.</p>
-          </motion.a>
-          <motion.a href="#!" className="project-item" variants={itemVariants}>
-            <h3>Project Two</h3>
-            <p>An open-source tool for optimizing developer workflows.</p>
-          </motion.a>
-          <motion.a href="#!" className="project-item" variants={itemVariants}>
-            <h3>Project Three</h3>
-            <p>A beautiful, dark-themed dashboard interface.</p>
-          </motion.a>
+          <ProjectCard 
+            title="Project One" 
+            description="A minimalist web application built with React and Vite." 
+          />
+          <ProjectCard 
+            title="Project Two" 
+            description="An open-source tool for optimizing developer workflows." 
+          />
+          <ProjectCard 
+            title="Project Three" 
+            description="A beautiful, dark-themed dashboard interface." 
+          />
         </motion.div>
       </div>
     </motion.section>
