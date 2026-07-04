@@ -65,7 +65,8 @@ const CustomCursor = () => {
           pointerEvents: 'none',
           zIndex: 9997,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(120,120,120,0.35) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%)',
+          mixBlendMode: 'difference',
         }}
         animate={{
           width: isHovering ? 90 : 55,
@@ -88,12 +89,13 @@ const CustomCursor = () => {
           pointerEvents: 'none',
           zIndex: 9999,
           borderRadius: '50%',
-          backgroundColor: 'var(--text-color)',
+          backgroundColor: 'white',
+          mixBlendMode: 'difference',
         }}
         animate={{
-          width: isHovering ? 6 : 5,
-          height: isHovering ? 6 : 5,
-          opacity: isHovering ? 0.6 : 1,
+          width: isHovering ? 8 : 5,
+          height: isHovering ? 8 : 5,
+          opacity: isHovering ? 1 : 1,
         }}
         transition={{ duration: 0.15 }}
       />
@@ -111,13 +113,13 @@ const CustomCursor = () => {
           pointerEvents: 'none',
           zIndex: 9998,
           borderRadius: '50%',
-          border: '1.5px solid var(--text-color)',
-          opacity: 0.5,
+          border: '1.5px solid white',
+          mixBlendMode: 'difference',
         }}
         animate={{
-          width: isHovering ? 40 : 28,
-          height: isHovering ? 40 : 28,
-          opacity: isHovering ? 0.3 : 0.5,
+          width: isHovering ? 45 : 28,
+          height: isHovering ? 45 : 28,
+          opacity: isHovering ? 0.8 : 0.5,
         }}
         transition={{ duration: 0.2 }}
       />

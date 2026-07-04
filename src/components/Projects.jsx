@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TiltWrapper from './TiltWrapper';
 
 const FeaturedProject = ({ title, description, techList, alignRight, imgSrc, imgAlt }) => {
   return (
@@ -10,12 +11,12 @@ const FeaturedProject = ({ title, description, techList, alignRight, imgSrc, img
       transition={{ duration: 0.7, ease: "easeOut" }}
       viewport={{ once: true, margin: "-50px" }}
     >
-      <div className="project-image-container">
+      <TiltWrapper className="project-image-container" options={{ max: 10, scale: 1.05 }}>
         <a href="#!" className="project-image-link">
           <div className="image-overlay"></div>
           <img src={imgSrc} alt={imgAlt} className="project-image" />
         </a>
-      </div>
+      </TiltWrapper>
       <div className="project-content-container">
         <p className="project-overline font-mono">Featured Project</p>
         <h3 className="project-title">{title}</h3>
@@ -50,7 +51,39 @@ const Projects = () => {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="container">
-        <h2>Some Things I've Built</h2>
+        <div style={{ position: 'relative', display: 'inline-block', marginBottom: '2rem' }}>
+          <h2 style={{ marginBottom: 0 }}>Some Things I've Built</h2>
+          
+          {/* Sparkle Doodle */}
+          <motion.div 
+            initial={{ opacity: 0, rotate: -30, scale: 0 }}
+            whileInView={{ opacity: 0.6, rotate: 0, scale: 1 }}
+            transition={{ type: 'spring', duration: 1, delay: 0.5 }}
+            style={{ position: 'absolute', right: '-45px', top: '-25px', color: 'var(--accent-color)' }}
+          >
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M50 10 L55 35 L80 40 L55 45 L50 70 L45 45 L20 40 L45 35 Z" />
+              <path d="M80 10 L83 18 L91 21 L83 24 L80 32 L77 24 L69 21 L77 18 Z" />
+            </svg>
+          </motion.div>
+
+          {/* Squiggly Underline Doodle */}
+          <motion.div 
+            initial={{ opacity: 0, pathLength: 0 }}
+            whileInView={{ opacity: 0.6, pathLength: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            style={{ position: 'absolute', left: '10px', bottom: '-20px', color: 'var(--accent-color)', width: '100%' }}
+          >
+            <svg width="100%" height="20" viewBox="0 0 200 20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" preserveAspectRatio="none">
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+                d="M5 10 Q 25 20, 45 10 T 85 10 T 125 10 T 165 10 T 195 10" 
+              />
+            </svg>
+          </motion.div>
+        </div>
         <div className="featured-projects-list">
           <FeaturedProject 
             title="StrongApe – Fitness Accountability Buddy" 

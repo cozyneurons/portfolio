@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import TiltWrapper from './TiltWrapper';
 
 const GITHUB_USERNAME = 'AnkitaKumariii';
 
@@ -44,48 +45,54 @@ const ContribCard = ({ repo, index }) => {
   const orgName = repo.fork && repo.parent ? repo.parent.owner.login : repo.owner.login;
 
   return (
-    <motion.a
-      href={repo.html_url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="contrib-card"
+    <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-40px' }}
+      style={{ display: 'block', height: '100%' }}
     >
-      <div className="contrib-card-header">
-        <span className="contrib-repo-icon"><RepoIcon /></span>
-        <span className="contrib-repo-name">{repo.name}</span>
-        <span className="contrib-fork-icon"><ForkIcon /></span>
-      </div>
+      <TiltWrapper options={{ max: 15, scale: 1.03 }}>
+        <a
+          href={repo.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="contrib-card"
+        >
+          <div className="contrib-card-header">
+            <span className="contrib-repo-icon"><RepoIcon /></span>
+            <span className="contrib-repo-name">{repo.name}</span>
+            <span className="contrib-fork-icon"><ForkIcon /></span>
+          </div>
 
-      <p className="contrib-description">
-        {repo.description || 'No description provided.'}
-      </p>
+          <p className="contrib-description">
+            {repo.description || 'No description provided.'}
+          </p>
 
-      <div className="contrib-card-footer">
-        <span className="contrib-owner">
-          <RepoIcon />
-          {orgName}
-        </span>
-        <div className="contrib-meta">
-          {repo.language && (
-            <span className="contrib-lang">
-              <span className="lang-dot" style={{ background: langColor }} />
-              {repo.language}
+          <div className="contrib-card-footer">
+            <span className="contrib-owner">
+              <RepoIcon />
+              {orgName}
             </span>
-          )}
-          {repo.stargazers_count > 0 && (
-            <span className="contrib-stars">
-              <StarIcon /> {repo.stargazers_count}
-            </span>
-          )}
-        </div>
-      </div>
+            <div className="contrib-meta">
+              {repo.language && (
+                <span className="contrib-lang">
+                  <span className="lang-dot" style={{ background: langColor }} />
+                  {repo.language}
+                </span>
+              )}
+              {repo.stargazers_count > 0 && (
+                <span className="contrib-stars">
+                  <StarIcon /> {repo.stargazers_count}
+                </span>
+              )}
+            </div>
+          </div>
 
-      <span className="contrib-external"><ExternalIcon /></span>
-    </motion.a>
+          <span className="contrib-external"><ExternalIcon /></span>
+        </a>
+      </TiltWrapper>
+    </motion.div>
   );
 };
 
@@ -140,9 +147,35 @@ const Contributions = () => {
       viewport={{ once: true, margin: '-100px' }}
     >
       <div className="container">
-        <div className="contributions-header">
-          <h2>Contributions</h2>
-          <p className="contributions-subtitle">Open-source contributions and community involvement.</p>
+        <div className="contributions-header-wrapper" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div style={{ position: 'relative', display: 'inline-block' }}>
+            <h2 style={{ marginBottom: 0 }}>Contributions</h2>
+            
+            {/* Heart Doodle (Open Source Love) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0, rotate: -20 }}
+              whileInView={{ opacity: 0.8, scale: 1, rotate: 10 }}
+              transition={{ type: 'spring', duration: 1, delay: 0.5 }}
+              style={{ position: 'absolute', right: '-45px', top: '-15px', color: '#ff4b4b' }}
+            >
+              <svg width="35" height="35" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M50 85 C 50 85, 15 55, 15 30 C 15 15, 30 10, 45 20 C 50 25, 50 25, 50 25 C 50 25, 50 25, 55 20 C 70 10, 85 15, 85 30 C 85 55, 50 85, 50 85 Z" />
+              </svg>
+            </motion.div>
+
+            {/* Plus Doodle (Adding Value) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0, rotate: 45 }}
+              whileInView={{ opacity: 0.5, scale: 1, rotate: -10 }}
+              transition={{ type: 'spring', duration: 1, delay: 0.7 }}
+              style={{ position: 'absolute', left: '-40px', bottom: '0px', color: 'var(--accent-color)' }}
+            >
+              <svg width="25" height="25" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round">
+                <path d="M 50 15 L 50 85 M 15 50 L 85 50" />
+              </svg>
+            </motion.div>
+          </div>
+          <p className="contributions-subtitle" style={{ marginTop: '1rem' }}>Open-source contributions and community involvement.</p>
         </div>
 
         {loading ? (

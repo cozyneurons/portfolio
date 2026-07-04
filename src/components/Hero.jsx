@@ -31,14 +31,28 @@ const Hero = () => {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="container hero-container">
-        <motion.p 
-          className="hero-intro font-mono"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Hi, my name is
-        </motion.p>
+        <div style={{ position: 'relative', display: 'inline-block' }}>
+          <motion.p 
+            className="hero-intro font-mono"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            style={{ marginBottom: '1rem' }}
+          >
+            Hi, my name is
+          </motion.p>
+          {/* Star Doodle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0, rotate: -45 }}
+            animate={{ opacity: 0.8, scale: 1, rotate: 10 }}
+            transition={{ type: 'spring', duration: 1, delay: 0.8 }}
+            style={{ position: 'absolute', left: '-30px', top: '-10px', color: '#ffb703' }}
+          >
+            <svg width="25" height="25" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M50 10 L58 38 L90 50 L58 62 L50 90 L42 62 L10 50 L42 38 Z" />
+            </svg>
+          </motion.div>
+        </div>
         
         <motion.h1
           className="hero-title"
@@ -54,14 +68,34 @@ const Hero = () => {
           ))}
         </motion.h1>
 
-        <motion.h2
-          className="hero-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
-          I turn ideas into reality.
-        </motion.h2>
+        <div style={{ position: 'relative', display: 'inline-block' }}>
+          <motion.h2
+            className="hero-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            style={{ marginBottom: '1.5rem' }}
+          >
+            I turn ideas into reality.
+          </motion.h2>
+          
+          {/* Swoosh Underline Doodle */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            style={{ position: 'absolute', left: 0, bottom: '0.2rem', width: '100%', color: 'var(--accent-color)' }}
+          >
+            <svg width="100%" height="15" viewBox="0 0 200 15" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" preserveAspectRatio="none">
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
+                d="M 5 10 Q 50 15, 100 5 T 195 10" 
+              />
+            </svg>
+          </motion.div>
+        </div>
 
         <motion.p
           className="hero-description"

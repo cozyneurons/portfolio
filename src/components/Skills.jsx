@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import InteractiveBackground from './InteractiveBackground';
 
 // Skills data extracted from resume & projects
 const SKILL_CATEGORIES = [
@@ -86,8 +87,10 @@ const Skills = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true, margin: '-100px' }}
+      style={{ position: 'relative' }}
     >
-      <div className="container">
+      <InteractiveBackground />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="skills-header">
           <p className="skills-overline font-mono">Skills</p>
           <h2>Tools I work with</h2>
