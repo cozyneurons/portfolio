@@ -24,4 +24,4 @@ This portfolio showcases projects, skills, and provides a way to get in touch.
 
 ### Prerequisites
 
-Enjoyyy! karo na sab
+Enjoyyy!
