@@ -76,7 +76,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
             style={{ marginBottom: '1.5rem' }}
           >
-            I turn ideas into reality.
+            I turn <span className="gradient-text">ideas into reality.</span>
           </motion.h2>
           
           {/* Swoosh Underline Doodle */}
@@ -115,7 +115,7 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 1.2 }}
         >
           <Magnetic>
-            <a href="#!" className="hero-cta-button font-mono">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-cta-button font-mono">
               Check out my resume!
             </a>
           </Magnetic>

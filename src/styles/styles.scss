@@ -1123,3 +1123,23 @@ footer {
   transform: translateY(-2px);
   cursor: none;
 }
+
+/* --- GRADIENT TEXT ANIMATION --- */
+.gradient-text {
+  background: linear-gradient(270deg, #ff4d4d, #f9cb28, #00d2ff, #7928ca, #ff4d4d);
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shineGradient 12s linear infinite;
+  display: inline-block;
+}
+
+@keyframes shineGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -400% center;
+  }
+}

@@ -88,12 +88,12 @@ const Contact = () => {
           <motion.div className="contact-socials" variants={itemVariants}>
             <p className="socials-text">Or find me on:</p>
             <div className="socials-grid">
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="social-card">
+              <a href="https://github.com/AnkitaKumariii" target="_blank" rel="noreferrer" className="social-card">
                 <GithubIcon size={24} />
                 <span>GitHub</span>
                 <ArrowRight size={16} className="arrow-icon" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-card">
+              <a href="https://www.linkedin.com/in/ankita-kumari1312/" target="_blank" rel="noreferrer" className="social-card">
                 <LinkedinIcon size={24} />
                 <span>LinkedIn</span>
                 <ArrowRight size={16} className="arrow-icon" />
